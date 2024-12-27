@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {TasksModel} from '../models/task.model';
+import { Category } from '../models/category.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,7 @@ export class TaskService {
 
   getTasksForCategory(categoryId: number): TasksModel[] {
     const tasks: TasksModel[] = this.getTasks();
-    return tasks.filter(task => Number(task.categoryId) === Number(categoryId)); // Filter tasks by categoryId
+    return tasks.filter(task => Number(task.categoryId) === Number(categoryId)); 
   }
 
 

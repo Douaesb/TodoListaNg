@@ -1,4 +1,4 @@
-import {Category} from "./categories.model";
+import {Category} from "./category.model";
 
 export interface TasksModel {
   id: number;
