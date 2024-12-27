@@ -1,1 +1,37 @@
-<p>task works!</p>
+<h2 class="text-3xl font-bold text-center mb-8">Manage Tasks</h2>
+<div class="flex justify-end mt-6">
+  <button
+    class="bg-green-500 text-white py-2 px-6 rounded-full shadow-md hover:bg-green-600 transition-colors"
+    (click)="addTask()"
+  >
+    Add Task
+  </button>
+</div>
+
+<div class="max-w-7xl mx-auto p-4">
+
+  <!-- Task List Component -->
+  <app-task-list
+    [tasks]="tasks"
+    (editTaskEvent)="editTask($event)"
+    (deleteTaskEvent)="deleteTask($event)"
+  ></app-task-list>
+
+  <div *ngIf="showFormPopup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-white w-full max-w-md p-6 rounded-lg shadow-xl">
+      <!-- Task Form Component -->
+      <app-task-form
+          [taskToEdit]="taskToEdit"
+        (formSubmitted)="handleFormSubmitted()"
+      ></app-task-form>
+
+      <!-- Close Button -->
+      <button
+        class="w-full bg-red-500 text-white py-2 mt-4 rounded-full hover:bg-red-600"
+        (click)="showFormPopup = false"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</div>
