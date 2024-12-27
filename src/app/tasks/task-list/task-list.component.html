@@ -1,1 +1,71 @@
-<p>task-list works!</p>
+<div class="search-bar mb-6">
+    <input
+      type="text"
+      [(ngModel)]="searchText"
+      placeholder="Rechercher une tâche..."
+      class="w-full p-4 bg-gray-100 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
+    />
+  </div>
+  
+  <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
+    <li
+      *ngFor="let task of tasks | taskSearch: searchText"
+      [ngClass]="{
+        'bg-red-100': task.priority === 'high',
+        'bg-yellow-100': task.priority === 'medium',
+        'bg-green-100': task.priority === 'low'
+      }"
+      class="flex flex-col justify-between items-start p-8 rounded-lg shadow-xl transition-transform hover:scale-105 mb-6"
+    >
+      <div class="flex justify-between w-full">
+        <span class="text-2xl font-semibold text-gray-800">{{ task.title }}</span>
+        <!-- Status Badge -->
+        <span
+          [ngClass]="{
+            'bg-green-500': task.status === 'completed',
+            'bg-yellow-500': task.status === 'in-progress',
+            'bg-red-500': task.status === 'not-started'
+          }"
+          class="px-3 py-1 rounded-full text-white text-sm"
+        >
+          {{ task.status }}
+        </span>
+      </div>
+  
+      <div class="mt-4">
+        <h3 class="text-lg font-semibold">Description:</h3>
+        <p class="ml-4 mt-2 text-sm text-gray-700">{{ task.description }}</p>
+      </div>
+  
+      <div class="mt-4">
+        <h3 class="text-lg font-semibold">Due Date:</h3>
+        <p class="ml-4 mt-2 text-sm text-gray-700">{{ task.dueDate | date:'short' }}</p>
+      </div>
+  
+      <div class="mt-4">
+        <h3 class="text-lg font-semibold">Priority:</h3>
+        <p class="ml-4 mt-2 text-sm text-gray-700">{{ task.priority }}</p>
+      </div>
+  
+      <!-- Display Category -->
+      <div class="mt-4">
+        <h3 class="text-lg font-semibold">Category:</h3>
+        <p class="ml-4 mt-2 text-sm text-gray-700">{{ task.category?.name || 'No Category' }}</p>
+      </div>
+  
+      <div class="mt-6 flex gap-2 w-full">
+        <button
+          class="bg-blue-500 text-white py-1 px-3 shadow-sm rounded-full hover:bg-blue-600 transition-colors hover:scale-105"
+          (click)="editTask(task)"
+        >
+          Edit
+        </button>
+        <button
+          class="bg-red-500 text-white py-1 px-3 rounded-full shadow-sm hover:bg-red-600 transition-colors hover:scale-105"
+          (click)="deleteTask(task)"
+        >
+          Delete
+        </button>
+      </div>
+    </li>
+  </ul>

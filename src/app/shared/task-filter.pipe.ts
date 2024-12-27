@@ -1,13 +1,21 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import {TasksModel} from "../models/task.model";
 
 @Pipe({
-  name: 'taskFilter',
-  standalone: true
+  name: 'taskSearch',
+  standalone: true,
+  pure: false
 })
-export class TaskFilterPipe implements PipeTransform {
+export class TaskSearchPipe  implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  transform(tasks: TasksModel[], searchText: string): TasksModel[] {
+    if (!searchText) {
+      return tasks;
+    }
+    return tasks.filter(task =>
+      task.title.toLowerCase().includes(searchText.toLowerCase()) ||
+      (task.description && task.description.toLowerCase().includes(searchText.toLowerCase()))
+    );
   }
 
 }
