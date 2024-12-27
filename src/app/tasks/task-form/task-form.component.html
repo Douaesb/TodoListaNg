@@ -1,1 +1,121 @@
-<p>task-form works!</p>
+<div>
+    <h3 class="text-xl font-semibold mb-4 text-center">
+      {{ taskToEdit ? 'Edit Task' : 'Add Task' }}
+    </h3>
+  
+    <form (ngSubmit)="onSubmit()" class="space-y-4">
+      <!-- Row 1: Title and Due Date -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="title" class="block text-sm font-medium text-gray-700">Task Title</label>
+          <input
+            type="text"
+            id="title"
+            [(ngModel)]="title"
+            name="title"
+            required
+            maxlength="100"
+            class="w-full mt-1 px-3 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          />
+          <p *ngIf="submitted && titleErrorMessage" class="text-red-500 text-sm">
+            {{ titleErrorMessage }}
+          </p>
+        </div>
+  
+        <div>
+          <label for="dueDate" class="block text-sm font-medium text-gray-700">Due Date</label>
+          <input
+            type="datetime-local"
+            id="dueDate"
+            [(ngModel)]="dueDate"
+            name="dueDate"
+            required
+            class="w-full mt-1 px-3 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          />
+          <p *ngIf="submitted && dueDateErrorMessage" class="text-red-500 text-sm">
+            {{ dueDateErrorMessage }}
+          </p>
+        </div>
+      </div>
+  
+      <!-- Row 2: Priority and Status -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="priority" class="block text-sm font-medium text-gray-700">Priority</label>
+          <select
+            id="priority"
+            [(ngModel)]="priority"
+            name="priority"
+            required
+            class="w-full mt-1 px-3 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          >
+            <option value="">Select Priority</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
+          <p *ngIf="submitted && priorityErrorMessage" class="text-red-500 text-sm">
+            {{ priorityErrorMessage }}
+          </p>
+        </div>
+  
+        <div>
+          <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
+          <select
+            id="status"
+            [(ngModel)]="status"
+            name="status"
+            required
+            class="w-full mt-1 px-3 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          >
+            <option value="">Select Status</option>
+            <option value="not-started">Not Started</option>
+            <option value="in-progress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+          <p *ngIf="submitted && statusErrorMessage" class="text-red-500 text-sm">
+            {{ statusErrorMessage }}
+          </p>
+        </div>
+      </div>
+  
+      <!-- Row 3: Category and Description -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
+          <select
+            id="category"
+            [(ngModel)]="categoryId"
+            name="categoryId"
+            class="w-full mt-1 px-3 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          >
+            <option value="">Select Category</option>
+            <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+          </select>
+        </div>
+  
+        <div>
+          <label for="description" class="block text-sm font-medium text-gray-700">Task Description</label>
+          <textarea
+            id="description"
+            [(ngModel)]="description"
+            name="description"
+            rows="2"
+            maxlength="500"
+            class="w-full mt-1 px-3 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          ></textarea>
+          <p *ngIf="submitted && descriptionErrorMessage" class="text-red-500 text-sm">
+            {{ descriptionErrorMessage }}
+          </p>
+        </div>
+      </div>
+  
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="w-full bg-blue-500 text-white py-2 rounded-full mt-4 hover:bg-blue-600"
+      >
+        {{ taskToEdit ? 'Update Task' : 'Add Task' }}
+      </button>
+    </form>
+  </div>
