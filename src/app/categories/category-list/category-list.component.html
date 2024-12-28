@@ -1,37 +1,42 @@
 <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-    <li
-      *ngFor="let category of categories"
-      class="flex flex-col justify-between items-start bg-gray-200 p-8 rounded-lg shadow-xl transition-transform hover:scale-105"
-    >
-      <span class="text-2xl font-semibold text-gray-800">{{ category.name }}</span>
-  
-      <!-- Display the number of tasks in the category -->
-      <div class="mt-4">
-        <h3 class="text-lg font-semibold">Tasks:</h3>
-        <ul class="ml-4 mt-2">
-          <!-- If there are no tasks, show "0 tasks" -->
-          <li *ngIf="category.tasks.length === 0" class="text-sm text-gray-500">0 tasks</li>
-  
-          <!-- If there are tasks, display the count -->
-          <li *ngIf="category.tasks.length > 0" class="text-sm text-gray-500">
-            {{ category.tasks.length }} task{{ category.tasks.length > 1 ? 's' : '' }}
-          </li>
-        </ul>
+  <li
+    *ngFor="let category of categories"
+    class="flex flex-col justify-between w-full items-start bg-yellow-50 p-8 rounded-lg shadow-xl transition-transform hover:scale-105"
+  >
+    <!-- Name and Icons Row -->
+    <div class="flex w-full justify-between items-center flex-row">
+      <div class="flex-1">
+        <span class="text-xl font-semibold text-yellow-800">{{ category.name }}</span>
       </div>
-  
-      <div class="mt-6 flex gap-2 w-full">
+      <div class="flex ">
+        <!-- Edit Button -->
         <button
-          class="bg-blue-500 text-white py-1 px-3 shadow-sm rounded-full hover:bg-blue-600 transition-colors hover:scale-105"
+          class="text-white py-1 px-3 rounded-full hover:scale-105"
           (click)="editCategory(category)"
         >
-          Edit
+          <img src="../../assets/edit.png" class="h-6" alt="edit" />
         </button>
+        <!-- Delete Button -->
         <button
-          class="bg-red-500 text-white py-1 px-3 rounded-full shadow-sm hover:bg-red-600 transition-colors hover:scale-105"
+          class="text-white py-1 px-3 rounded-full hover:scale-105"
           (click)="deleteCategory(category)"
         >
-          Delete
+          <img src="../../assets/delete.png" class="h-6" alt="delete" />
         </button>
       </div>
-    </li>
-  </ul>
+    </div>
+
+    <!-- Task Icon and Count Section -->
+    <div class="mt-4 flex items-center justify-center">
+      <img src="../../assets/task.png" class="h-8" alt="Logo" />
+      <ul class="ml-2">
+        <li *ngIf="category.tasks.length === 0" class="text-md text-yellow-500">
+          0 tasks
+        </li>
+        <li *ngIf="category.tasks.length > 0" class="text-md text-yellow-500">
+          {{ category.tasks.length }} task{{ category.tasks.length > 1 ? 's' : '' }}
+        </li>
+      </ul>
+    </div>
+  </li>
+</ul>

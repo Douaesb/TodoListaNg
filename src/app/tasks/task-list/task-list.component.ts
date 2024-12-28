@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TasksModel } from "../../models/task.model";
 import { TaskService } from "../../services/task.service";
 import { TaskSearchPipe } from '../../shared/task-filter.pipe';
 import {DatePipe, NgClass, NgForOf} from "@angular/common";
 import { FormsModule } from "@angular/forms";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-task-list',
@@ -13,10 +14,13 @@ import { FormsModule } from "@angular/forms";
     DatePipe,
     FormsModule,
     TaskSearchPipe,
-    NgClass
+    NgClass,
+    CommonModule
   ],
   templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.scss']
+  styleUrls: ['./task-list.component.scss'],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+
 })
 export class TaskListComponent implements OnInit {
   @Input() tasks: TasksModel[] = [];

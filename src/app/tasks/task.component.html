@@ -1,14 +1,17 @@
-<h2 class="text-3xl font-bold text-center mb-8">Manage Tasks</h2>
-<div class="flex justify-end mt-6">
-  <button
-    class="bg-green-500 text-white py-2 px-6 rounded-full shadow-md hover:bg-green-600 transition-colors"
-    (click)="addTask()"
-  >
-    Add Task
-  </button>
+<div class="flex items-center gap-4 justify-center mt-4">
+  <img src="../../assets/to-do-list.png" class="h-11" alt="Logo" />
+  <h2 class="text-3xl font-bold text-center">Manage Tasks</h2>
 </div>
-
 <div class="max-w-7xl mx-auto p-4">
+  <div class="flex justify-start mb-6">
+    <button
+      class="text-black py-2 px-6 rounded-full transition-colors flex items-center space-x-2"
+      (click)="addTask()"
+    >
+      <img src="../../assets/add-task.png" class="h-11" alt="Logo" />
+      <span>Add Task</span>
+    </button>
+  </div>
 
   <!-- Task List Component -->
   <app-task-list
@@ -19,19 +22,19 @@
 
   <div *ngIf="showFormPopup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
     <div class="bg-white w-full max-w-md p-6 rounded-lg shadow-xl">
+      <div class="w-full flex flex-end">
+        <button
+          class="w-full text-white py-2 rounded-full cursor-default"
+          (click)="showFormPopup = false"
+        ></button>
+        <img (click)="showFormPopup = false" src="../../assets/cancel.png" class="h-6 cursor-pointer" alt="Logo" />
+      </div>
       <!-- Task Form Component -->
       <app-task-form
           [taskToEdit]="taskToEdit"
         (formSubmitted)="handleFormSubmitted()"
       ></app-task-form>
 
-      <!-- Close Button -->
-      <button
-        class="w-full bg-red-500 text-white py-2 mt-4 rounded-full hover:bg-red-600"
-        (click)="showFormPopup = false"
-      >
-        Close
-      </button>
     </div>
   </div>
 </div>

@@ -1,17 +1,19 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component} from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-  @Output() toggleAside = new EventEmitter<void>();
+  
+constructor(private readonly router: Router) {}
 
-  onToggleAside() {
-    console.log('Toggle aside button clicked');
-    this.toggleAside.emit();
-  }
+  navigateTo(route: string): void {
+    this.router.navigate([route])
+      .catch((err) => console.error('Navigation error:', err));
+  } 
 }

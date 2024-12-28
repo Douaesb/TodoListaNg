@@ -68,7 +68,7 @@
             required
             class="w-full mt-1 px-3 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           >
-            <option value="">Select Status</option>
+            <option value="" disabled>Select Status</option>
             <option value="not-started">Not Started</option>
             <option value="in-progress">In Progress</option>
             <option value="completed">Completed</option>
@@ -89,7 +89,7 @@
             name="categoryId"
             class="w-full mt-1 px-3 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           >
-            <option value="">Select Category</option>
+            <option value="" disabled>Select Category</option>
             <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
           </select>
         </div>
@@ -100,7 +100,7 @@
             id="description"
             [(ngModel)]="description"
             name="description"
-            rows="2"
+            rows="1"
             maxlength="500"
             class="w-full mt-1 px-3 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
           ></textarea>
@@ -113,7 +113,7 @@
       <!-- Submit Button -->
       <button
         type="submit"
-        class="w-full bg-blue-500 text-white py-2 rounded-full mt-4 hover:bg-blue-600"
+        class="w-full p-2 bg-yellow-100 text-yellow-500 border-2 border-yellow-500 py-2 rounded-full mt-4"
       >
         {{ taskToEdit ? 'Update Task' : 'Add Task' }}
       </button>
