@@ -132,6 +132,32 @@ We welcome contributions to improve this project! To contribute, follow these st
 
 ---
 
+## 📱 **Screenshots**
+
+Here's a preview of the app:
+
+**Statistics Dashboard**:
+
+![Statistics Dashboard](screenshots/1.png)
+
+
+**Category Management**:
+
+![Category Management](screenshots/2.png)
+![Category Management](screenshots/4.png)
+![Category Management](screenshots/5.png)
+![Category Management](screenshots/8.png)
+
+**Task Management**:
+
+![Task Management](screenshots/3.png)
+![Task Management](screenshots/6.png)
+![Task Management](screenshots/7.png)
+![Task Management](screenshots/9.png)
+![Task Management](screenshots/10.png)
+
+
+---
 
 ## 💬 **License**
 

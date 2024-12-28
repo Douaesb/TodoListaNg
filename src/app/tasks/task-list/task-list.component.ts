@@ -2,7 +2,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, OnInit, Output 
 import { TasksModel } from "../../models/task.model";
 import { TaskService } from "../../services/task.service";
 import { TaskSearchPipe } from '../../shared/task-filter.pipe';
-import {DatePipe, NgClass, NgForOf} from "@angular/common";
+import {DatePipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { CommonModule } from '@angular/common';
 
@@ -29,6 +29,9 @@ export class TaskListComponent implements OnInit {
 
   searchText: string = '';
 
+    showModal: boolean = false; 
+    selectedTask: TasksModel | null = null; 
+    
   constructor(private readonly taskService: TaskService) {}
 
   ngOnInit() {
@@ -39,7 +42,22 @@ export class TaskListComponent implements OnInit {
     this.editTaskEvent.emit(task);
   }
 
-  deleteTask(task: TasksModel) {
-    this.deleteTaskEvent.emit(task);
-  }
+
+   confirmDelete(task: TasksModel) {
+      this.selectedTask = task; 
+      this.showModal = true; 
+    }
+  
+    closeModal() {
+      this.showModal = false; 
+      this.selectedTask = null; 
+    }
+  
+    deleteTask(task: TasksModel | null) {
+      if (task) {
+        console.log('Delete clicked for task:', task); // Add this log to debug
+        this.deleteTaskEvent.emit(task);
+      }
+      this.closeModal();
+    }
 }

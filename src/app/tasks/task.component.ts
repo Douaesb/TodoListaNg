@@ -43,10 +43,8 @@ export class TaskComponent  {
   }
 
   deleteTask(task: TasksModel) {
-    if (confirm(`Are you sure you want to delete the category "${task.title}"?`)) {
       this.taskService.deleteTask(task)
-      this.fetchTasks();
-    }
+      this.fetchTasks();    
   }
 
   handleFormSubmitted() {
